@@ -112,15 +112,16 @@ namespace Ginger_PACT_Plugin
         }
 
         public int LoadInteractions(string filename)
-        {            
+        {
             //TODO: find the correct class which has also "provider": and "consumer": - YW- meanwhile it's working for loading
-            ProviderServicePactFile mm = (ProviderServicePactFile)JSonHelper.LoadObjFromJSonFile(filename, typeof(ProviderServicePactFile));
-            
-            foreach (ProviderServiceInteraction PSI in mm.Interactions)
-            {
-                AddInteraction(PSI);
-            }
-            return mm.Interactions.Count();
+            //ProviderServicePactFile mm = (ProviderServicePactFile)JSonHelper.LoadObjFromJSonFile(filename, typeof(ProviderServicePactFile));
+
+            //foreach (ProviderServiceInteraction PSI in mm.Interactions)
+            //{
+            //    AddInteraction(PSI);
+            //}
+            //return mm.Interactions.Count();
+            return 0;
         }
 
         public void AddInteraction(ProviderServiceInteraction PSI)
