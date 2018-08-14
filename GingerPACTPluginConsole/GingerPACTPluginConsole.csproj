@@ -10,8 +10,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Ginger\Ginger\GingerCoreNET\GingerCoreNET.csproj" />
     <ProjectReference Include="..\Ginger-PACT-Plugin\Ginger-PACT-Plugin.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GingerCoreCommon">
+      <HintPath>GingerCoreCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="GingerCoreNET">
+      <HintPath>GingerCoreNET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="GingerCoreCommon.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="GingerCoreNET.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@
       "description": "a retrieve customer 1 request",
       "request": {
         "method": "get",
-        "path": "/Cusotmer/1",
+        "path": "/Customer/1",
         "headers": {
           "Accept": "application/json"
         }
@@ -39,7 +39,7 @@
       "description": "a retrieve customer 1 request",
       "request": {
         "method": "get",
-        "path": "/Cusotmer/2",
+        "path": "/Customer/2",
         "headers": {
           "Accept": "application/json"
         }

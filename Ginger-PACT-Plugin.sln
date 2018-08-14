@@ -11,10 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GingerPACTPluginUI", "Ginge
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GingerPACTPluginConsole", "GingerPACTPluginConsole\GingerPACTPluginConsole.csproj", "{7DCA52A3-863F-4D53-9EAF-453318493D13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GingerCoreNET", "..\Ginger\Ginger\GingerCoreNET\GingerCoreNET.csproj", "{AADFB069-4D21-4673-86C4-1EDDC61246EF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GingerCoreCommon", "..\Ginger\Ginger\GingerCoreCommon\GingerCoreCommon.csproj", "{9A6ECBC8-BA17-43B5-8383-96AA5822486F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,14 +33,6 @@ Global
 		{7DCA52A3-863F-4D53-9EAF-453318493D13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DCA52A3-863F-4D53-9EAF-453318493D13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DCA52A3-863F-4D53-9EAF-453318493D13}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AADFB069-4D21-4673-86C4-1EDDC61246EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AADFB069-4D21-4673-86C4-1EDDC61246EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AADFB069-4D21-4673-86C4-1EDDC61246EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AADFB069-4D21-4673-86C4-1EDDC61246EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A6ECBC8-BA17-43B5-8383-96AA5822486F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A6ECBC8-BA17-43B5-8383-96AA5822486F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A6ECBC8-BA17-43B5-8383-96AA5822486F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A6ECBC8-BA17-43B5-8383-96AA5822486F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
