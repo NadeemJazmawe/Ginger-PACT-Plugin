@@ -1,0 +1,73 @@
+﻿{
+  "consumer": {
+    "name": "Foo"
+  },
+  "provider": {
+    "name": "Bar"
+  },
+  "interactions": [
+    {
+      "provider_state": "there is customer with ID 1",
+      "description": "a retrieve customer 1 request",
+      "request": {
+        "method": "get",
+        "path": "/Cusotmer/1",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "ID": "1",
+          "First": "Moshe",
+          "Last": "Cohen",
+          "Phones": [
+            {
+              "type": "home",
+              "number": "3453333332"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "provider_state": "there is customer with ID 1",
+      "description": "a retrieve customer 1 request",
+      "request": {
+        "method": "get",
+        "path": "/Cusotmer/2",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "ID": "2",
+          "First": "John",
+          "Last": "Smith",
+          "Phones": [
+            {
+              "type": "home",
+              "number": "3453333332"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
+
+ 

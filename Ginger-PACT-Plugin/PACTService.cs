@@ -2,11 +2,13 @@
 using GingerPlugInsNET.PlugInsLib;
 using GingerPlugInsNET.ServicesLib;
 using System;
+using System.IO;
 
 namespace Ginger_PACT_Plugin
 {
     public class PACTService : PluginServiceBase, IStandAloneAction
     {
+        // Need to be here or in json !!!??
         public override string Name { get { return "PACTService"; } }
 
 
@@ -15,22 +17,25 @@ namespace Ginger_PACT_Plugin
         [GingerAction("StartPACTServer", "Start PACT Server")]
         public void StartPACTServer(ref GingerAction GA, int port)
         {
+            Console.WriteLine("Starting PACT server at port: " + port);
             // check input params and add errors if invalid
             if (port == 0)
             {
                 GA.AddError("StartPACTServer", "Port cannot be 0");
                 return;
             }
-
-            // Act
+            
             SV = new ServiceVirtualization(port);
+            GA.Output.Add("port", port + "");
+            GA.Output.Add("url", SV.MockProviderServiceBaseUri);
 
             //ExInfo
-            GA.ExInfo = "PACT Mock Server Started on port: " + port + " " + SV.MockProviderServiceBaseUri;
+            GA.ExInfo = "PACT Mock Server Started on port: " + port + " " + SV.MockProviderServiceBaseUri;            
+            Console.WriteLine("PACT Server started");
         }
 
 
-        [GingerAction("StartPACTServer", "Start PACT Server")]
+        [GingerAction("StopPACTServer", "Stop PACT Server")]
         public void StopPACTServer(ref GingerAction GA)
         {
 
@@ -50,23 +55,16 @@ namespace Ginger_PACT_Plugin
                 return;
             }
             
-            //if (s.StartsWith("~"))
-            //    s = Path.GetFullPath(s.Replace("~", act.SolutionFolder));
-            //if (File.Exists(s))
-            //{
-            //    int count = SV.LoadInteractions(s);
-            //    act.ExInfo += "Interaction file loaded: '" + s + "', " + count + " Interactions loaded";
-            //    act.AddOutput("Interaction Loaded", count + "");
-            //}
-            //else
-            //{
-            //    act.Error += "Interaction file not found - " + s;
-            //}
-
-            // Act
-
-            //ExInfo
-            GA.ExInfo = "not implemented yet";
+            if (File.Exists(fileName))
+            {
+                int count = SV.LoadInteractions(fileName);
+                GA.ExInfo += "Interaction file loaded: '" + fileName + "', " + count + " Interactions loaded";
+                GA.Output.Add("Interactions count",  count + "");
+            }
+            else
+            {
+                GA.AddError("LoadInteractionsFile", "Interaction file not found - " + fileName);
+            }
         }
 
 
