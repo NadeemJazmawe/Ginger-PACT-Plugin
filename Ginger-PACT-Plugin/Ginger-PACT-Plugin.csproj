@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ginger.Plugin.Core" Version="1.0.0" />
+    <None Remove="PACTHighlighting.xshd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="PACTHighlighting.xshd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ginger.Plugin.Core" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="PactNet.Windows" Version="2.3.1" />
   </ItemGroup>

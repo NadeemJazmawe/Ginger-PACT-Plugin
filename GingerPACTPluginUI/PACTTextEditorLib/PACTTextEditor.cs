@@ -28,6 +28,9 @@
 //using System.Diagnostics;
 //using GingerPACTPlugIn.Properties;
 //using System.Windows.Media;
+//using GingerPlugInsNET.TextEditorLib;
+//using Ginger_PACT_Plugin;
+//using GingerPACTPluginUI.Properties;
 
 //namespace GingerPACTPlugIn.PACTTextEditorLib
 //{
@@ -43,14 +46,14 @@
 //            {
 //                if (mExtensions.Count == 0)
 //                {
-//                    mExtensions.Add(".pact");                    
+//                    mExtensions.Add(".pact");
 //                }
 //                return mExtensions;
 //            }
 //        }
 
 //        public override byte[] HighlightingDefinition { get { return Properties.Resources.PACTHighlighting; } }
-        
+
 //        public static string BitmapImageToFile(System.Drawing.Bitmap bmp)
 //        {
 //            //TODO: clanup up or where to save
@@ -74,7 +77,7 @@
 
 //                    ToolImage1.Source = new BitmapImage(new Uri(file));
 
-//                    mTools.Add(new TextEditorToolBarItem() { Image = ToolImage1,  toolTip = "Export to Java", clickHandler = new ToolClickRoutedEventHandler(ExportToJava) });
+//                    mTools.Add(new TextEditorToolBarItem() { Image = ToolImage1, toolTip = "Export to Java", clickHandler = new ToolClickRoutedEventHandler(ExportToJava) });
 
 //                    Image ToolImage2 = new Image();
 //                    file = BitmapImageToFile(Resources._JSONdoc_16x16);
@@ -97,7 +100,7 @@
 
 //        private void AddNewInteractionTemplate(TextEditorToolRoutedEventArgs Args)
 //        {
-//            Args.txt = Args.txt.Substring(0,Args.CaretLocation) + Environment.NewLine + Resources.NewInteractionTemplate + Environment.NewLine + Args.txt.Substring(Args.CaretLocation) ;
+//            Args.txt = Args.txt.Substring(0, Args.CaretLocation) + Environment.NewLine + Resources.NewInteractionTemplate + Environment.NewLine + Args.txt.Substring(Args.CaretLocation);
 //        }
 
 //        private void Compile(TextEditorToolRoutedEventArgs Args)
@@ -105,7 +108,7 @@
 //            ServiceVirtualization SV = new ServiceVirtualization();
 //            try
 //            {
-//                List < int > BodyLines = new List<int>();
+//                List<int> BodyLines = new List<int>();
 //                List<int> InteractionLines = new List<int>();
 //                string EditorText = Args.txt;
 //                Args.ErrorLines = new List<int>();
@@ -127,7 +130,7 @@
 //                            if (!tag.TrimStart().StartsWith("@"))
 //                            {
 //                                Args.ErrorLines.Add(i + 2);
-//                                Args.ErrorMessage = Args.ErrorMessage + "Line number: "+ (i + 2) + "-Tags must start with @" + Environment.NewLine;
+//                                Args.ErrorMessage = Args.ErrorMessage + "Line number: " + (i + 2) + "-Tags must start with @" + Environment.NewLine;
 
 //                            }
 //                        }
@@ -170,7 +173,7 @@
 //                            if (string.IsNullOrEmpty(GetStringBetween(lines[i + 3], "\"", "\"")))
 //                            {
 //                                Args.ErrorLines.Add(i + 4);
-//                                Args.ErrorMessage = Args.ErrorMessage + "Line number: " + ( i + 4 )+ "-Method value cannot be empty" + Environment.NewLine;
+//                                Args.ErrorMessage = Args.ErrorMessage + "Line number: " + (i + 4) + "-Method value cannot be empty" + Environment.NewLine;
 //                            }
 //                        }
 //                        else
@@ -227,7 +230,7 @@
 //                        i = j;
 //                        if (lines[i].TrimStart().StartsWith("Body"))
 //                        {
-//                            BodyLines.Add(i+2);
+//                            BodyLines.Add(i + 2);
 //                        }
 //                        else
 //                        {
@@ -297,7 +300,7 @@
 //                            Dictionary<string, string> ValuesDict = GetDictBetween(line, "|", "|");
 //                            if (ValuesDict.ContainsKey("") || ValuesDict.ContainsValue(""))
 //                            {
-//                                Args.ErrorLines.Add(j +1);
+//                                Args.ErrorLines.Add(j + 1);
 //                                Args.ErrorMessage = Args.ErrorMessage + "Line number: " + (j + 1) + "-Headers Values have to be wrapped by quotes and cannot be empty" + Environment.NewLine;
 //                            }
 //                            j = j + 1;
@@ -306,7 +309,7 @@
 
 //                        if (lines[i].TrimStart().StartsWith("Body"))
 //                        {
-//                            BodyLines.Add(i+2);
+//                            BodyLines.Add(i + 2);
 //                        }
 //                        else
 //                        {
@@ -346,8 +349,8 @@
 //                }
 //                catch (Exception ex)
 //                {
-//                    Args.ErrorLines.Add(InteractionLines[InteractionsIndexes]+1);
-//                    Args.ErrorMessage = Args.ErrorMessage +  "Failed to Build Interaction no- " + (InteractionsIndexes+1) + Environment.NewLine;
+//                    Args.ErrorLines.Add(InteractionLines[InteractionsIndexes] + 1);
+//                    Args.ErrorMessage = Args.ErrorMessage + "Failed to Build Interaction no- " + (InteractionsIndexes + 1) + Environment.NewLine;
 //                    throw ex;
 //                }
 
@@ -389,7 +392,7 @@
 //            }
 //            catch (Exception ex)
 //            {
-//                Args.ErrorMessage = "Compilation Failed"  +Environment.NewLine + Args.ErrorMessage + ex.Message + Environment.NewLine + ex.InnerException;
+//                Args.ErrorMessage = "Compilation Failed" + Environment.NewLine + Args.ErrorMessage + ex.Message + Environment.NewLine + ex.InnerException;
 //                SV.MockProviderService.Stop();
 //            }
 //        }
@@ -477,7 +480,7 @@
 //            }
 
 //            List<ProviderServiceInteraction> PSIList = ParsePACT(Args.txt);
-//            string ServiceConsumer = ParseProperty(Args.txt,"Consumer");
+//            string ServiceConsumer = ParseProperty(Args.txt, "Consumer");
 //            string HasPactWith = ParseProperty(Args.txt, "Provider");
 //            ServiceVirtualization SV = new ServiceVirtualization(0, SaveToPath, ServiceConsumer, HasPactWith);
 //            try
@@ -513,8 +516,8 @@
 //            }
 //            return string.Empty;
 //        }
-        
-//        private bool OpenFolderDialog(string Description,ref string SaveToPath)
+
+//        private bool OpenFolderDialog(string Description, ref string SaveToPath)
 //        {
 //            var dlgf = new System.Windows.Forms.FolderBrowserDialog();
 //            dlgf.Description = Description;
@@ -561,14 +564,14 @@
 //                return;
 
 //            string SaveToPath = string.Empty;
-//            if (!OpenFolderDialog("Select folder for saving the created Java file",ref SaveToPath))
+//            if (!OpenFolderDialog("Select folder for saving the created Java file", ref SaveToPath))
 //            {
 //                Args.ErrorMessage = "Export To Java Aborted";
 //                return;
 //            }
-               
+
 //            string JavaTemaplate = string.Empty;
-//            if (MessageBox.Show("Do you want to use a default Java template?", "Java template to be used", MessageBoxButton.YesNo, MessageBoxImage.Question,MessageBoxResult.Yes) == MessageBoxResult.No)
+//            if (MessageBox.Show("Do you want to use a default Java template?", "Java template to be used", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.No)
 //            {
 //                string SelectedFilePath = string.Empty;
 //                if (OpenFileDialog("Select Java Temaplate File", ref SelectedFilePath))
@@ -596,12 +599,12 @@
 //        }
 
 //        private List<ProviderServiceInteraction> ParsePACT(string txt)
-//        { 
+//        {
 //            // First we parse the text to list of PSIs
-//            string[] lines = txt.Split(new string[] { Environment.NewLine}, StringSplitOptions.None);
+//            string[] lines = txt.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 //            List<ProviderServiceInteraction> PSIList = new List<ProviderServiceInteraction>();
 //            ProviderServiceInteraction PSI = null;
-//            bool RequestHeadersPassed = false; 
+//            bool RequestHeadersPassed = false;
 //            foreach (string s in lines)
 //            {
 //                string st = s.TrimStart();
@@ -895,7 +898,7 @@
 //                }
 //                else if (st.StartsWith("Will Respond With"))
 //                {
-//                        RequestHeadersPassed = true;
+//                    RequestHeadersPassed = true;
 //                }
 //                else if (st.StartsWith("|"))
 //                {
@@ -904,16 +907,16 @@
 //                    {
 //                        foreach (KeyValuePair<string, string> KVP in st2)
 //                            if (!RequestHeadersPassed)
-//                                  PSI.Request.Headers.Add(KVP);
+//                                PSI.Request.Headers.Add(KVP);
 //                            else
-//                                  PSI.Response.Headers.Add(KVP);
+//                                PSI.Response.Headers.Add(KVP);
 //                    }
 //                }
 //                else if (st.StartsWith("{"))
 //                {
-//                    string st2 = st.Substring(0, st.LastIndexOf('}')+1);
+//                    string st2 = st.Substring(0, st.LastIndexOf('}') + 1);
 //                    if (!RequestHeadersPassed)
-//                         PSI.Request.Body += st2;
+//                        PSI.Request.Body += st2;
 //                    else
 //                        PSI.Response.Body += st2;
 
@@ -930,7 +933,7 @@
 //        {
 //            //TODO: create java code for Junit like: https://github.com/DiUS/pact-jvm/blob/master/pact-jvm-consumer-junit/src/test/java/au/com/dius/pact/consumer/examples/ExampleJavaConsumerPactRuleTest.java
 //            //TODO: use external file/resource with all the text and place holder to replace
-            
+
 //            string txt = string.Empty;
 //            string tab1 = "\t";
 //            string tab2 = "\t";
@@ -958,16 +961,16 @@
 //            foreach (ProviderServiceInteraction PSI in pSIList)
 //            {
 //                txt += tab2 + "//Add Interaction: <<" + PSI.Description + ">>" + Environment.NewLine;
-//                txt += tab2 + ".given(\"" + PSI.ProviderState  + "\")" + Environment.NewLine;
+//                txt += tab2 + ".given(\"" + PSI.ProviderState + "\")" + Environment.NewLine;
 //                txt += tab1 + tab2 + ".uponReceiving(\"" + PSI.Description + "\")" + Environment.NewLine;
 //                txt += tab1 + tab2 + ".path(\"" + PSI.Request.Path + "\")" + Environment.NewLine;
-//                txt += tab1 + tab2 + ".method(\"" + PSI.Request.Method.ToString()  + "\")" + Environment.NewLine;
+//                txt += tab1 + tab2 + ".method(\"" + PSI.Request.Method.ToString() + "\")" + Environment.NewLine;
 //                txt += tab1 + tab2 + ".headers(requestHeaders" + i + ")" + Environment.NewLine;
 //                txt += tab1 + tab2 + ".body(\"" + PSI.Request.Body + "\")" + Environment.NewLine;
 //                txt += tab2 + ".willRespondWith()" + Environment.NewLine;
 //                txt += tab1 + tab2 + ".status(" + PSI.Response.Status + ")" + Environment.NewLine;   //TODO: get status convert OK...
 //                txt += tab1 + tab2 + ".headers(responseHeaders" + i + ")" + Environment.NewLine;
-//                txt += tab1 + tab2 + ".body(\""+ PSI.Response.Body + "\")" + Environment.NewLine;
+//                txt += tab1 + tab2 + ".body(\"" + PSI.Response.Body + "\")" + Environment.NewLine;
 //                i = i + 1;
 //            }
 
@@ -975,7 +978,7 @@
 
 //            if (!IsPlaceHolderExist)
 //            {
-//                Args.ErrorMessage = Args.ErrorMessage + "Place Holder "+ InteractionData + " is missing from the customized Java template." + Environment.NewLine + "Export to Java Process Aborted.";
+//                Args.ErrorMessage = Args.ErrorMessage + "Place Holder " + InteractionData + " is missing from the customized Java template." + Environment.NewLine + "Export to Java Process Aborted.";
 //                return;
 //            }
 
@@ -1013,7 +1016,7 @@
 //            }
 //        }
 
-//        public Dictionary<string,string> GetDictBetween(string STR, string FirstString, string LastString = null,bool HeaderNeededOnly = false)
+//        public Dictionary<string, string> GetDictBetween(string STR, string FirstString, string LastString = null, bool HeaderNeededOnly = false)
 //        {
 //            Dictionary<string, string> Dict = new Dictionary<string, string>();
 //            string str = "";
@@ -1038,7 +1041,7 @@
 //            }
 //            string[] result = str.Split('|');
 //            if (!HeaderNeededOnly)
-//                for (int i = 0;i<result.Length;i++)
+//                for (int i = 0; i < result.Length; i++)
 //                    result[i] = GetStringBetween(result[i], "\"", "\"");
 //            Dict.Add(result[0].Trim(), result[1].Trim());
 //            return Dict;

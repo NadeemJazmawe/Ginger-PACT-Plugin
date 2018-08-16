@@ -1,36 +1,36 @@
-﻿using GingerPlugInsNET.ActionsLib;
-using GingerPlugInsNET.PlugInsLib;
-using GingerPlugInsNET.ServicesLib;
+﻿using Amdocs.Ginger.Plugin.Core;
+using Amdocs.Ginger.Plugin.Core.ActionsLib;
 using System;
 using System.IO;
 
 namespace Ginger_PACT_Plugin
 {
-    public class PACTService : PluginServiceBase, IStandAloneAction
+    [GingerService("PACT", "PACT Server")]
+    public class PACTService : IGingerService, IStandAloneAction
     {
         // Need to be here or in json !!!??
-        public override string Name { get { return "PACTService"; } }
+        // public override string Name { get { return "PACTService"; } }
 
 
         ServiceVirtualization SV;
 
         [GingerAction("StartPACTServer", "Start PACT Server")]
-        public void StartPACTServer(ref GingerAction GA, int port)
+        public void StartPACTServer(IGingerAction GA, int port)
         {
             Console.WriteLine("Starting PACT server at port: " + port);
             // check input params and add errors if invalid
             if (port == 0)
             {
-                GA.AddError("StartPACTServer", "Port cannot be 0");
+                GA.AddError("Port cannot be 0");
                 return;
             }
             
             SV = new ServiceVirtualization(port);
-            GA.Output.Add("port", port + "");
-            GA.Output.Add("url", SV.MockProviderServiceBaseUri);
+            GA.AddOutput("port", port);
+            GA.AddOutput("url", SV.MockProviderServiceBaseUri);
 
             //ExInfo
-            GA.ExInfo = "PACT Mock Server Started on port: " + port + " " + SV.MockProviderServiceBaseUri;            
+            GA.AddExInfo("PACT Mock Server Started on port: " + port + " " + SV.MockProviderServiceBaseUri);            
             Console.WriteLine("PACT Server started");
         }
 
@@ -43,27 +43,27 @@ namespace Ginger_PACT_Plugin
             SV.MockProviderService.Stop();
             SV = null;
             //ExInfo
-            GA.ExInfo = "PACT Mock Server Stopped";
+            GA.AddExInfo("PACT Mock Server Stopped");
         }
 
-        [GingerAction("LoadInteractionsFile", "Load Interactions File")]
+        [GingerAction("LoadInteractionsFile", "Load Interactions File")]        
         public void LoadInteractionsFile(ref GingerAction GA, string fileName)
         {
             if (SV == null)
             {
-                GA.AddError("LoadInteractionsFile","Error: Service Virtualization not started yet");
+                GA.AddError("Service Virtualization not started yet");
                 return;
             }
             
             if (File.Exists(fileName))
             {
                 int count = SV.LoadInteractions(fileName);
-                GA.ExInfo += "Interaction file loaded: '" + fileName + "', " + count + " Interactions loaded";
+                GA.AddExInfo ("Interaction file loaded: '" + fileName + "', " + count + " Interactions loaded");
                 GA.Output.Add("Interactions count",  count + "");
             }
             else
             {
-                GA.AddError("LoadInteractionsFile", "Interaction file not found - " + fileName);
+                GA.AddError("Interaction file not found - " + fileName);
             }
         }
 
@@ -73,7 +73,7 @@ namespace Ginger_PACT_Plugin
         {
             if (SV == null)
             {
-                GA.AddError("LoadInteractionsFile", "Error: Service Virtualization not started yet");
+                GA.AddError("Error: Service Virtualization not started yet");
                 return;
             }
 
@@ -94,7 +94,7 @@ namespace Ginger_PACT_Plugin
             SV.ClearInteractions();
             
             //ExInfo
-            GA.ExInfo = "Interactions cleared";
+            GA.AddExInfo("Interactions cleared");
         }
 
         // TODO: LoadInteractionsFolder

@@ -17,7 +17,7 @@ limitations under the License.
 #endregion
 
 
-using GingerPlugInsNET.ActionsLib;
+using Amdocs.Ginger.Plugin.Core;
 using System.Windows.Controls;
 
 namespace GingerPACTPlugIn.ActionEditPages
