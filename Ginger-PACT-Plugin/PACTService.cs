@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Ginger_PACT_Plugin
 {
-    [GingerService("PACT", "PACT Server")]
+    [GingerService("PACTS", "PACT Server")]
     public class PACTService : IGingerService, IStandAloneAction
     {
         // Need to be here or in json !!!??
@@ -59,7 +59,8 @@ namespace Ginger_PACT_Plugin
             {
                 int count = SV.LoadInteractions(fileName);
                 GA.AddExInfo ("Interaction file loaded: '" + fileName + "', " + count + " Interactions loaded");
-                GA.AddOutput("Interactions count",  count + "");
+                GA.AddOutput("Interactions file", fileName + "");
+                GA.AddOutput("Interactions count",  count + "");                
             }
             else
             {

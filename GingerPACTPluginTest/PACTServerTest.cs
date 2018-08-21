@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace GingerPACTPluginTest
 {
     [TestClass]
-    public class UnitTest1
+    public class PACTServerTest
     {
         [TestMethod]
         public void StartServer()
@@ -31,15 +31,16 @@ namespace GingerPACTPluginTest
             //Arrange
             PACTService service = new PACTService();
             GingerAction GA = new GingerAction();
-
-            //Act
             service.StartPACTServer(GA, 5555);
             GingerAction GA2 = new GingerAction();
-            service.LoadInteractionsFile(ref GA2, TestResources.GetTestResourcesFile("Sample.PACT.json"));
+            string fileName = TestResources.GetTestResourcesFile("Sample.PACT.json");
+
+            //Act
+            service.LoadInteractionsFile(ref GA2, fileName);
 
             //Assert
             //Assert.AreEqual("PACT Mock Server Started on port: 5555 http://localhost:5555", GA.ExInfo, "Exinfo message");
-            Assert.AreEqual(null, GA.Errors, "No Errors");
+            Assert.AreEqual(null, GA2.Errors, "No Errors");
 
         }
     }

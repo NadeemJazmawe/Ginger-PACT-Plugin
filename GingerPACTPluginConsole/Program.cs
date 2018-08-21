@@ -1,6 +1,7 @@
 ﻿using Amdocs.Ginger.CoreNET.Drivers.CommunicationProtocol;
 using Ginger_PACT_Plugin;
 using GingerCoreNET.DriversLib;
+using GingerPACTPluginUI;
 using System;
 
 namespace GingerPACTPluginConsole
@@ -14,11 +15,14 @@ namespace GingerPACTPluginConsole
             //GingerAction GA = new GingerAction("aa");
             //s.StartPACTServer(ref GA, 4444);
             //Console.WriteLine("Done!");
+            
 
             GingerNode gingerNode = new GingerNode(new PACTService());
-            gingerNode.StartGingerNode("PACT", SocketHelper.GetLocalHostIP(), 15001);
+            gingerNode.StartGingerNode("PACT 1", SocketHelper.GetLocalHostIP(), 15001);
 
-            
+            // test def
+            //PACTEditor2 editor = new PACTEditor2();
+            //var v = editor.HighlightingDefinition;
 
 
             //TODO: Wait for?
