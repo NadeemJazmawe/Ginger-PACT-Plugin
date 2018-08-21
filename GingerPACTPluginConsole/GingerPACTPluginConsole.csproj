@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ginger.Plugin.Core" Version="2.0.0" />
+    <PackageReference Include="Ginger.Plugin.Core" Version="2.5.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,9 +24,6 @@
 
   <ItemGroup>
     <None Update="Ginger.PluginPackage.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="GingerCoreCommon.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="GingerCoreNET.dll">

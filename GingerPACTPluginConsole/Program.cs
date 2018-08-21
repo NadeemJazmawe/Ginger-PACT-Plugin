@@ -14,12 +14,15 @@ namespace GingerPACTPluginConsole
             //GingerAction GA = new GingerAction("aa");
             //s.StartPACTServer(ref GA, 4444);
             //Console.WriteLine("Done!");
+
+            GingerNode gingerNode = new GingerNode(new PACTService());
+            gingerNode.StartGingerNode("PACT", SocketHelper.GetLocalHostIP(), 15001);
+
             
-            //GingerNode gingerNode = new GingerNode(new PACTService());
-            //gingerNode.StartGingerNode("PACT", SocketHelper.GetLocalHostIP(), 15001);
+
 
             //TODO: Wait for?
-            
+
             Console.ReadKey();
         }
     }

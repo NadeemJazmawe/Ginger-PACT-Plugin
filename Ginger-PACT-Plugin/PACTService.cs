@@ -59,7 +59,7 @@ namespace Ginger_PACT_Plugin
             {
                 int count = SV.LoadInteractions(fileName);
                 GA.AddExInfo ("Interaction file loaded: '" + fileName + "', " + count + " Interactions loaded");
-                GA.Output.Add("Interactions count",  count + "");
+                GA.AddOutput("Interactions count",  count + "");
             }
             else
             {
