@@ -1005,66 +1005,6 @@
 //        //    System.IO.File.WriteAllText(SaveToPath + @"\PactToJava" + timeStamp + ".Java", JavaFileContent);
 //        //}
 
-//        public string GetStringBetween(string STR, string FirstString, string LastString = null)
-//        {
-//            string str = "";
-//            int Pos1 = STR.IndexOf(FirstString) + FirstString.Length;
-//            int Pos2;
-//            if (LastString != null)
-//            {
-//                Pos2 = STR.IndexOf(LastString, Pos1);
-//            }
-//            else
-//            {
-//                Pos2 = STR.Length;
-//            }
-
-//            if ((Pos2 - Pos1) > 0)
-//            {
-//                str = STR.Substring(Pos1, Pos2 - Pos1);
-//                return str;
-//            }
-//            else
-//            {
-//                return "";
-//            }
-//        }
-
-//        public Dictionary<string, string> GetDictBetween(string STR, string FirstString, string LastString = null, bool HeaderNeededOnly = false)
-//        {
-//            Dictionary<string, string> Dict = new Dictionary<string, string>();
-//            string str = "";
-//            int Pos1 = STR.IndexOf(FirstString) + FirstString.Length;
-//            int Pos2;
-//            if (LastString != null)
-//            {
-//                Pos2 = STR.LastIndexOf(LastString);
-//            }
-//            else
-//            {
-//                Pos2 = STR.Length;
-//            }
-
-//            if ((Pos2 - Pos1) > 0)
-//            {
-//                str = STR.Substring(Pos1, Pos2 - Pos1);
-//            }
-//            else
-//            {
-//                str = "";
-//            }
-//            string[] result = str.Split('|');
-//            if (!HeaderNeededOnly)
-//                for (int i = 0; i < result.Length; i++)
-//                    result[i] = GetStringBetween(result[i], "\"", "\"");
-//            Dict.Add(result[0].Trim(), result[1].Trim());
-//            return Dict;
-//        }
-
-//        //public override string Title()
-//        //{
-
-//        //    return "PACT Content Editor";
-//        //}
+//      
 //    }
 //}

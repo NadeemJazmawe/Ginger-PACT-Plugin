@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Ginger_PACT_Plugin
 {
-    [GingerService("PACTS", "PACT Server")]
+    [GingerService("PACT", "PACT Server")]
     public class PACTService : IGingerService, IStandAloneAction
     {
         // Need to be here or in json !!!??
