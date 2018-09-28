@@ -24,14 +24,22 @@ namespace Ginger_PACT_Plugin
                 GA.AddError("Port cannot be 0");
                 return;
             }
-            
-            SV = new ServiceVirtualization(port);
-            GA.AddOutput("port", port);
-            GA.AddOutput("url", SV.MockProviderServiceBaseUri);
+            try
+            {
+                SV = new ServiceVirtualization(port);
+                GA.AddOutput("port", port);
+                GA.AddOutput("url", SV.MockProviderServiceBaseUri);
 
-            //ExInfo
-            GA.AddExInfo("PACT Mock Server Started on port: " + port + " " + SV.MockProviderServiceBaseUri);            
-            Console.WriteLine("PACT Server started");
+                //ExInfo
+                GA.AddExInfo("PACT Mock Server Started on port: " + port + " " + SV.MockProviderServiceBaseUri);
+                Console.WriteLine("PACT Server started");
+            }
+            catch(Exception ex)
+            {
+                GA.AddError("Error starting PACT Mock Server: " + ex.Message);
+                Console.WriteLine("Error starting PACT Mock Server: " + ex.Message);
+            }
+            
         }
 
 
