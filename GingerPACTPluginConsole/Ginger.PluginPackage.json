@@ -1,7 +1,8 @@
 {
   "Id": "PACT",
   "Version": "1.0.0",
-  "ProjectUrl": "git\\PACt...",
+  "ProjectUrl": "git\\PACT...",
   "Description": "PACT",
-  "Summary" : "PACT can simulate and ..."
+  "Summary": "PACT can simulate and ...",
+  "StartupDLL": "GingerPACTPluginConsole.dll"
 }
