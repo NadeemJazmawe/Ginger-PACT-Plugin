@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ginger-PACT-Plugin\Ginger-PACT-Plugin.csproj" />
+    <ProjectReference Include="..\GingerPACTPluginConsole\GingerPACTPluginConsole.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,58 @@
+[
+  {
+    "InputValues": [
+      {
+        "Param": "GA",
+        "ParamTypeName": "IGingerAction"
+      },
+      {
+        "Param": "port",
+        "ParamTypeName": "Int32"
+      }
+    ],
+    "ID": "StartPACTServer",
+    "PluginID": "PACT",
+    "ServiceID": "PACT",
+    "Description": "Start PACT Server"
+  },
+  {
+    "InputValues": [
+      {
+        "Param": "GA",
+        "ParamTypeName": "IGingerAction"
+      }
+    ],
+    "ID": "StopPACTServer",
+    "PluginID": "PACT",
+    "ServiceID": "PACT",
+    "Description": "Stop PACT Server"
+  },
+  {
+    "InputValues": [
+      {
+        "Param": "GA",
+        "ParamTypeName": "IGingerAction"
+      },
+      {
+        "Param": "fileName",
+        "ParamTypeName": "String"
+      }
+    ],
+    "ID": "LoadInteractionsFile",
+    "PluginID": "PACT",
+    "ServiceID": "PACT",
+    "Description": "Load Interactions File"
+  },
+  {
+    "InputValues": [
+      {
+        "Param": "GA",
+        "ParamTypeName": "IGingerAction"
+      }
+    ],
+    "ID": "ClearInteractions",
+    "PluginID": "PACT",
+    "ServiceID": "PACT",
+    "Description": "Clear Interactions"
+  }
+]

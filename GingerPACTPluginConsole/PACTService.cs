@@ -44,7 +44,7 @@ namespace Ginger_PACT_Plugin
 
 
         [GingerAction("StopPACTServer", "Stop PACT Server")]
-        public void StopPACTServer(ref GingerAction GA)
+        public void StopPACTServer(IGingerAction GA)
         {
 
             // Act
@@ -55,7 +55,7 @@ namespace Ginger_PACT_Plugin
         }
 
         [GingerAction("LoadInteractionsFile", "Load Interactions File")]        
-        public void LoadInteractionsFile(ref GingerAction GA, string fileName)
+        public void LoadInteractionsFile(IGingerAction GA, string fileName)
         {
             if (SV == null)
             {
@@ -78,7 +78,7 @@ namespace Ginger_PACT_Plugin
 
 
         [GingerAction("ClearInteractions", "Clear Interactions")]
-        public void ClearInteractions(ref GingerAction GA)
+        public void ClearInteractions(IGingerAction GA)
         {
             if (SV == null)
             {

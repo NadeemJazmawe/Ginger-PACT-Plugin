@@ -6,23 +6,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ginger.Plugin.Core" Version="2.6.3" />
+    <None Remove="PACTHighlighting.xshd" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ginger-PACT-Plugin\Ginger-PACT-Plugin.csproj" />
+    <EmbeddedResource Include="PACTHighlighting.xshd" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="GingerCoreCommon">
-      <HintPath>GingerCoreCommon.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Ginger.Plugin.Core" Version="2.6.6" />
+    <PackageReference Include="PactNet.Windows" Version="2.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="GingerCoreNET">
       <HintPath>GingerCoreNET.dll</HintPath>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Ginger.PluginPackage.Actions.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Ginger.PluginPackage.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
