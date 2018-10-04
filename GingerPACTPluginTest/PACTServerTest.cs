@@ -36,7 +36,7 @@ namespace GingerPACTPluginTest
             string fileName = TestResources.GetTestResourcesFile("Sample.PACT.json");
 
             //Act
-            service.LoadInteractionsFile(ref GA2, fileName);
+            service.LoadInteractionsFile(GA2, fileName);
 
             //Assert
             //Assert.AreEqual("PACT Mock Server Started on port: 5555 http://localhost:5555", GA.ExInfo, "Exinfo message");

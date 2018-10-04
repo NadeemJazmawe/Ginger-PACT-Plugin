@@ -1,8 +1,5 @@
-﻿using Amdocs.Ginger.CoreNET.Drivers.CommunicationProtocol;
-using Amdocs.Ginger.Plugin.Core;
+﻿using Amdocs.Ginger.Plugin.Core;
 using Ginger_PACT_Plugin;
-using GingerCoreNET.DriversLib;
-using GingerPACTPluginUI;
 using System;
 
 namespace GingerPACTPluginConsole

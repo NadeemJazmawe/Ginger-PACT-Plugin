@@ -1,4 +1,5 @@
 ﻿using Amdocs.Ginger.Plugin.Core;
+using GingerPACTPlugIn.PACTTextEditorLib;
 using GingerPACTPluginUI;
 using PactNet.Mocks.MockHttpService.Models;
 using System;
@@ -14,23 +15,29 @@ namespace Ginger_PACT_Plugin.PACTEditorTools
 
         public string ToolTip { get { return "Generate JSON with PACT interactions"; } }
 
+        PACTTextEditor mPACTTextEditorr;
+        public ExportToJSONTool(PACTTextEditor PACTTextEditor)
+        {
+            mPACTTextEditorr = PACTTextEditor;
+        }
+
         public void Execute(ITextEditor textEditor)
         {
-            PACTEditor2 editor = (PACTEditor2)textEditor;
-            editor.Compile();
+
+            mPACTTextEditorr.Compile();
 
             //TODO: FIXME hard coded!
             string SaveToPath = @"c:\temp\pact.json";
             //string SaveToPath = string.Empty;
             //if (!OpenFolderDialog("Select folder for saving the created Json file", ref SaveToPath))
             //{
-            //    Args.ErrorMessage = "Export To Json Aborted";
+            //    ErrorMessage = "Export To Json Aborted";
             //    return;
             //}
 
-            List<ProviderServiceInteraction> PSIList = editor.ParsePACT(editor.TextHandler.Text);
-            string ServiceConsumer = editor.ParseProperty(editor.TextHandler.Text, "Consumer");
-            string HasPactWith = editor.ParseProperty(editor.TextHandler.Text, "Provider");
+            List<ProviderServiceInteraction> PSIList = mPACTTextEditorr.ParsePACT(mPACTTextEditorr.txt);
+            string ServiceConsumer = mPACTTextEditorr.ParseProperty(mPACTTextEditorr.TextHandler.Text, "Consumer");
+            string HasPactWith = mPACTTextEditorr.ParseProperty(mPACTTextEditorr.TextHandler.Text, "Provider");
             ServiceVirtualization SV = new ServiceVirtualization(0, SaveToPath, ServiceConsumer, HasPactWith);
             try
             {
@@ -42,15 +49,18 @@ namespace Ginger_PACT_Plugin.PACTEditorTools
                 }
                 SV.PactBuilder.Build();  // will save it in C:\temp\pacts - TODO: config
                 SV.MockProviderService.Stop();
-                // Args.SuccessMessage = "Json File Exported Successfully";
+                // SuccessMessage = "Json File Exported Successfully";
                 Process.Start(SaveToPath);
             }
             catch (Exception ex)
             {
-                // editor.ShowMEssage( Args.ErrorMessage = "Json File Export Failed" + Environment.NewLine + ex.Message;
+                // editor.ShowMEssage( ErrorMessage = "Json File Export Failed" + Environment.NewLine + ex.Message;
                 SV.MockProviderService.Stop();
             }
         }
+
+        
+        
     }
 
 

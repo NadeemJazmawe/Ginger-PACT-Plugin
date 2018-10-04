@@ -6,16 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="PACTHighlighting.xshd" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="PACTHighlighting.xshd" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Ginger.Plugin.Core" Version="2.6.6" />
     <PackageReference Include="PactNet.Windows" Version="2.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GingerPACTPluginCommon\GingerPACTPluginCommon.csproj" />
   </ItemGroup>
 
   <ItemGroup>

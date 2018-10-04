@@ -4,5 +4,6 @@
   "ProjectUrl": "git\\PACT...",
   "Description": "PACT",
   "Summary": "PACT can simulate and ...",
-  "StartupDLL": "GingerPACTPluginConsole.dll"
+  "StartupDLL": "GingerPACTPluginConsole.dll",
+  "UIDLL": "GingerPACTPluginUI.exe"
 }
