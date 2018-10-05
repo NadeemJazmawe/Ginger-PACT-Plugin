@@ -31,6 +31,8 @@ namespace GingerPACTPluginUI.PACTTextEditorLib
 
         string ErrorMessage;
 
+        string JavaTemaplate = string.Empty;
+
         private void ExportToJava()
         {
             mEditor.Compile();
@@ -44,7 +46,7 @@ namespace GingerPACTPluginUI.PACTTextEditorLib
                 return;
             }
 
-            string JavaTemaplate = string.Empty;
+            
             if (MessageBox.Show("Do you want to use a default Java template?", "Java template to be used", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.No)
             {
                 string SelectedFilePath = string.Empty;
@@ -58,7 +60,7 @@ namespace GingerPACTPluginUI.PACTTextEditorLib
             }
             else
             {
-                // FIXME JavaTemaplate = Resources.JavaTemplate;
+                JavaTemaplate = GingerPACTPluginCommon.Templates.JavaTemplate;
             }
 
             List<ProviderServiceInteraction> PSIList = mEditor.ParsePACT(mEditor.txt);
@@ -73,52 +75,70 @@ namespace GingerPACTPluginUI.PACTTextEditorLib
         }
 
 
-
         private void GenerateJava(string JavaTemaplate, List<ProviderServiceInteraction> pSIList, string SaveToPath, string Consumer, string Provider)
         {
             //TODO: create java code for Junit like: https://github.com/DiUS/pact-jvm/blob/master/pact-jvm-consumer-junit/src/test/java/au/com/dius/pact/consumer/examples/ExampleJavaConsumerPactRuleTest.java
             //TODO: use external file/resource with all the text and place holder to replace
 
-            string txt = string.Empty;
+            StringBuilder txt = new StringBuilder();
             string tab1 = "\t";
             string tab2 = "\t";
 
             int i = 1;
             foreach (ProviderServiceInteraction PSI in pSIList)
             {
-                txt += tab2 + "//Data setup for Interaction: <<" + PSI.ProviderState + "  /  " + PSI.Description + ">> " + Environment.NewLine;
-                txt += tab1 + "Map<String, String> requestHeaders" + i + " = new HashMap<>();" + Environment.NewLine;
+                txt.Append(tab2).Append("//Data setup for Interaction: <<").Append(PSI.ProviderState).Append("  /  ").Append(PSI.Description).Append(">> ").Append(Environment.NewLine);
+                txt.Append(tab1).Append("Map<String, String> requestHeaders").Append(i).Append(" = new HashMap<>();").Append(Environment.NewLine);
                 foreach (var header in PSI.Request.Headers)
                 {
-                    txt += tab1 + "requestHeaders" + i + ".put(\"" + header.Key + "\", \"" + header.Value + "\");" + Environment.NewLine;
+                    txt.Append(tab1).Append("requestHeaders").Append(i).Append(".put(\"").Append(header.Key).Append("\", \"").Append(header.Value).Append("\");").Append(Environment.NewLine);
                 }
-                txt += tab1 + "Map<String, String> responseHeaders" + i + " = new HashMap<>();" + Environment.NewLine;
+                txt.Append(tab1).Append("Map<String, String> responseHeaders").Append(i).Append(" = new HashMap<>();").Append(Environment.NewLine);
                 foreach (var header in PSI.Response.Headers)
                 {
-                    txt += tab1 + "responseHeaders" + i + ".put(\"" + header.Key + "\", \"" + header.Value + "\");" + Environment.NewLine;
+                    txt.Append(tab1).Append("responseHeaders").Append(i).Append(".put(\"").Append(header.Key).Append("\", \"").Append(header.Value).Append("\");").Append(Environment.NewLine);
                 }
-                txt += Environment.NewLine;
+                txt.Append(Environment.NewLine);
                 i = i + 1;
             }
 
-            txt += tab2 + "return builder" + Environment.NewLine;
-            i = 1;
-            foreach (ProviderServiceInteraction PSI in pSIList)
-            {
-                txt += tab2 + "//Add Interaction: <<" + PSI.Description + ">>" + Environment.NewLine;
-                txt += tab2 + ".given(\"" + PSI.ProviderState + "\")" + Environment.NewLine;
-                txt += tab1 + tab2 + ".uponReceiving(\"" + PSI.Description + "\")" + Environment.NewLine;
-                txt += tab1 + tab2 + ".path(\"" + PSI.Request.Path + "\")" + Environment.NewLine;
-                txt += tab1 + tab2 + ".method(\"" + PSI.Request.Method.ToString() + "\")" + Environment.NewLine;
-                txt += tab1 + tab2 + ".headers(requestHeaders" + i + ")" + Environment.NewLine;
-                txt += tab1 + tab2 + ".body(\"" + PSI.Request.Body + "\")" + Environment.NewLine;
-                txt += tab2 + ".willRespondWith()" + Environment.NewLine;
-                txt += tab1 + tab2 + ".status(" + PSI.Response.Status + ")" + Environment.NewLine;   //TODO: get status convert OK...
-                txt += tab1 + tab2 + ".headers(responseHeaders" + i + ")" + Environment.NewLine;
-                txt += tab1 + tab2 + ".body(\"" + PSI.Response.Body + "\")" + Environment.NewLine;
-                i = i + 1;
-            }
+            txt.Append(tab2).Append("return builder").Append(Environment.NewLine);
+            //i = 1;
+            // foreach (ProviderServiceInteraction PSI in pSIList)
+            // {
+                //txt += tab2 + "//Add Interaction: <<" + PSI.Description + ">>" + Environment.NewLine;
+                //txt += tab2 + ".given(\"" + PSI.ProviderState + "\")" + Environment.NewLine;
+                //txt += tab1 + tab2 + ".uponReceiving(\"" + PSI.Description + "\")" + Environment.NewLine;
+                //txt += tab1 + tab2 + ".path(\"" + PSI.Request.Path + "\")" + Environment.NewLine;
+                //txt += tab1 + tab2 + ".method(\"" + PSI.Request.Method.ToString() + "\")" + Environment.NewLine;
+                //txt += tab1 + tab2 + ".headers(requestHeaders" + i + ")" + Environment.NewLine;
+                //txt += tab1 + tab2 + ".body(\"" + PSI.Request.Body + "\")" + Environment.NewLine;
+                //txt += tab2 + ".willRespondWith()" + Environment.NewLine;
+                //txt += tab1 + tab2 + ".status(" + PSI.Response.Status + ")" + Environment.NewLine;   //TODO: get status convert OK...
+                //txt += tab1 + tab2 + ".headers(responseHeaders" + i + ")" + Environment.NewLine;
+                //txt += tab1 + tab2 + ".body(\"" + PSI.Response.Body + "\")" + Environment.NewLine;
+                //i = i + 1;
+             // }
 
+            //bool IsPlaceHolderExist = JavaTemaplate.Contains(InteractionData);
+
+            
+            //if (!IsPlaceHolderExist)
+            //{
+            //    ErrorMessage = ErrorMessage + "Place Holder " + InteractionData + " is missing from the customized Java template." + Environment.NewLine + "Export to Java Process Aborted.";
+            //    return;
+            //}
+
+            
+            string JavaFileContent = JavaTemaplate.Replace("<<Interactions_Data>>", txt.ToString());
+            JavaFileContent = JavaFileContent.Replace("<<Provider>>", Provider);
+            JavaFileContent = JavaFileContent.Replace("<<Consumer>>", Consumer);
+
+            String timeStamp = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
+
+            System.IO.File.WriteAllText(SaveToPath + @"\PactToJava" + timeStamp + ".Java", JavaFileContent);
         }
+
+
     }
 }

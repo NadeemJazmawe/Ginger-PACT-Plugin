@@ -11,9 +11,9 @@ namespace GingerPACTPluginUI.PACTTextEditorLib
 {
     public class AddPACTTool : ITextEditorToolBarItem
     {
-        public string ToolText { get { return "Add PACT"; } }
+        public string ToolText { get { return "Add Interaction"; } }
 
-        public string ToolTip { get { return "Add PACT"; } }
+        public string ToolTip { get { return "Add Interaction"; } }
 
         PACTTextEditor mPACTTextEditorr;
 
@@ -24,7 +24,7 @@ namespace GingerPACTPluginUI.PACTTextEditorLib
 
         public void Execute(ITextEditor textEditor)
         {
-            MessageBox.Show("done");
+            mPACTTextEditorr.TextHandler.AppendText(GingerPACTPluginCommon.Templates.NewInteractionTemplate);
         }
     }
 }

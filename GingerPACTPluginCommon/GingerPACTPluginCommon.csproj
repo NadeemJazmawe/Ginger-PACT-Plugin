@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\JavaTemplate.txt" />
+    <None Remove="Resources\NewInteractionTemplate.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\JavaTemplate.txt" />
+    <EmbeddedResource Include="Resources\NewInteractionTemplate.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="PactNet" Version="2.3.3" />
   </ItemGroup>
 
