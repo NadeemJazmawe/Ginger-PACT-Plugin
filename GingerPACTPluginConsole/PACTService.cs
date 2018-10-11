@@ -65,10 +65,17 @@ namespace Ginger_PACT_Plugin
             
             if (File.Exists(fileName))
             {
-                int count = SV.LoadInteractions(fileName);
-                GA.AddExInfo ("Interaction file loaded: '" + fileName + "', " + count + " Interactions loaded");
-                GA.AddOutput("Interactions file", fileName + "");
-                GA.AddOutput("Interactions count",  count + "");                
+                try
+                {
+                    int count = SV.LoadInteractions(fileName);
+                    GA.AddExInfo("Interaction file loaded: '" + fileName + "', " + count + " Interactions loaded");
+                    GA.AddOutput("Interactions file", fileName + "");
+                    GA.AddOutput("Interactions count", count + "");
+                }
+                catch(Exception ex)
+                {
+                    GA.AddError("Error when loading interaction file: " + fileName + " " + ex.Message);
+                }
             }
             else
             {
