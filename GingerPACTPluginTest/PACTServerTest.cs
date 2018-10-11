@@ -43,5 +43,26 @@ namespace GingerPACTPluginTest
             Assert.AreEqual(null, GA2.Errors, "No Errors");
 
         }
+
+
+        [TestMethod]
+        public void ClearInteractions()
+        {
+            //Arrange
+            PACTService service = new PACTService();
+            GingerAction GA = new GingerAction();
+            service.StartPACTServer(GA, 6677);
+            GingerAction GA2 = new GingerAction();
+            string fileName = TestResources.GetTestResourcesFile("Sample.PACT.json");
+            service.LoadInteractionsFile(GA2, fileName);
+
+            //Act
+            GingerAction GA3 = new GingerAction();
+            service.ClearInteractions(GA3);
+
+            //Assert            
+            Assert.AreEqual(null, GA2.Errors, "No Errors");
+
+        }
     }
 }
