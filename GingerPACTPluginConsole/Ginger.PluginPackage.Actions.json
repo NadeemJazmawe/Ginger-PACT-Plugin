@@ -10,9 +10,9 @@
         "ParamTypeName": "Int32"
       }
     ],
-    "ID": "StartPACTServer",
+    "ActionId": "StartPACTServer",
     "PluginID": "PACT",
-    "ServiceID": "PACT",
+    "ServiceId": "PACT",
     "Description": "Start PACT Server"
   },
   {
@@ -22,9 +22,9 @@
         "ParamTypeName": "IGingerAction"
       }
     ],
-    "ID": "StopPACTServer",
-    "PluginID": "PACT",
-    "ServiceID": "PACT",
+    "ActionId": "StopPACTServer",
+    "PluginId": "PACT",
+    "ServiceId": "PACT",
     "Description": "Stop PACT Server"
   },
   {
@@ -38,9 +38,9 @@
         "ParamTypeName": "String"
       }
     ],
-    "ID": "LoadInteractionsFile",
+    "ActionId": "LoadInteractionsFile",
     "PluginID": "PACT",
-    "ServiceID": "PACT",
+    "ServiceId": "PACT",
     "Description": "Load Interactions File"
   },
   {
@@ -50,9 +50,9 @@
         "ParamTypeName": "IGingerAction"
       }
     ],
-    "ID": "ClearInteractions",
+    "ActionId": "ClearInteractions",
     "PluginID": "PACT",
-    "ServiceID": "PACT",
+    "ServiceId": "PACT",
     "Description": "Clear Interactions"
   }
 ]
