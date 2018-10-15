@@ -11,7 +11,7 @@
       }
     ],
     "ActionId": "StartPACTServer",
-    "PluginID": "PACT",
+    "PluginId": "PACT",
     "ServiceId": "PACT",
     "Description": "Start PACT Server"
   },
@@ -39,7 +39,7 @@
       }
     ],
     "ActionId": "LoadInteractionsFile",
-    "PluginID": "PACT",
+    "PluginId": "PACT",
     "ServiceId": "PACT",
     "Description": "Load Interactions File"
   },
@@ -51,7 +51,7 @@
       }
     ],
     "ActionId": "ClearInteractions",
-    "PluginID": "PACT",
+    "PluginId": "PACT",
     "ServiceId": "PACT",
     "Description": "Clear Interactions"
   }
