@@ -338,7 +338,7 @@ namespace GingerPACTPlugIn.PACTTextEditorLib
 
                         j = i + 1;
 
-                        while (lines[j].TrimStart().StartsWith("{"))
+                        while (j < lines.Length && lines[j].TrimStart().StartsWith("{"))
                         {
                             string line = lines[j].TrimStart();
                             //TODO: Add code for validating Body
@@ -414,6 +414,7 @@ namespace GingerPACTPlugIn.PACTTextEditorLib
             {
                 ErrorMessage = "Compilation Failed" + Environment.NewLine + ErrorMessage + ex.Message + Environment.NewLine + ex.InnerException;
                 SV.MockProviderService.Stop();
+                throw new Exception(ErrorMessage);                
             }
         }
 
