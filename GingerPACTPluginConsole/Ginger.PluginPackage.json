@@ -1,9 +1,9 @@
 {
   "Id": "PACT",
-  "Version": "1.0.0",
-  "ProjectUrl": "git\\PACT...",
+  "Version": "v1.7",
+  "ProjectUrl": "https://github.com/Ginger-Automation/Ginger-PACT-Plugin",
   "Description": "PACT",
-  "Summary": "PACT can simulate and ...",
+  "Summary": "PACT plugin allows to simulate Web Services Server for API contract testing",
   "StartupDLL": "GingerPACTPluginConsole.dll",
   "UIDLL": "GingerPACTPluginUI.exe"
 }

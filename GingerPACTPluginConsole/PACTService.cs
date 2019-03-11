@@ -6,7 +6,7 @@ using System.IO;
 namespace Ginger_PACT_Plugin
 {
     [GingerService("PACT", "PACT Server")]
-    public class PACTService : IGingerService, IStandAloneAction
+    public class PACTService 
     {
         // Need to be here or in json !!!??
         // public override string Name { get { return "PACTService"; } }
