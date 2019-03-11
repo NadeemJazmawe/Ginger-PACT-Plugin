@@ -14,7 +14,12 @@ namespace GingerPACTPluginConsole
             //s.StartPACTServer(ref GA, 4444);
             //Console.WriteLine("Done!");            
 
-            GingerNodeStarter.StartNode(new PACTService(), "PACT Service 1");
+            //GingerNodeStarter.StartNode(new PACTService(), "PACT Service 1");
+            using (GingerNodeStarter gingerNodeStarter = new GingerNodeStarter())
+            {
+                gingerNodeStarter.StartNode("PACT Service 1", new PACTService());
+                gingerNodeStarter.Listen();
+            }
 
             //GingerNode gingerNode = new GingerNode(new PACTService());
             //if (args.Length == 0)
@@ -25,7 +30,7 @@ namespace GingerPACTPluginConsole
             //{
             //    gingerNode.StartGingerNode(args[0]);  // start with nodeConfigFileName
             //}
-            
+
 
             // test def
             //PACTEditor2 editor = new PACTEditor2();
