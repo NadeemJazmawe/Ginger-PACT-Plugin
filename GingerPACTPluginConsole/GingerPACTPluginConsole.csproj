@@ -3,10 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Version>1.9</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ginger.Plugin.Core" Version="3.3.4" />
+    <PackageReference Include="Ginger.Plugin.Core" Version="4.1.0" />
     <PackageReference Include="PactNet.Windows" Version="2.4.6" />
   </ItemGroup>
 

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Ginger_PACT_Plugin.PACTEditorTools
 {
@@ -22,20 +23,20 @@ namespace Ginger_PACT_Plugin.PACTEditorTools
         {
             mPACTTextEditorr = PACTTextEditor;
         }
-
+        
         public void Execute(ITextEditor textEditor)
         {
 
             // mPACTTextEditorr.Compile();
 
-            //TODO: FIXME hard coded!
-            string SaveToPath = @"c:\temp\pact\";
-            //string SaveToPath = string.Empty;
-            //if (!OpenFolderDialog("Select folder for saving the created Json file", ref SaveToPath))
-            //{
-            //    ErrorMessage = "Export To Json Aborted";
-            //    return;
-            //}
+            
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Json files (*.json)|*.json";
+            if (saveFileDialog.ShowDialog()==DialogResult.Cancel)
+            {
+                return;
+            }
+
 
             List<ProviderServiceInteraction> PSIList = mPACTTextEditorr.ParsePACT(mPACTTextEditorr.txt);
             //string ServiceConsumer = mPACTTextEditorr.ParseProperty(mPACTTextEditorr.TextHandler.Text, "Consumer");
@@ -71,11 +72,11 @@ namespace Ginger_PACT_Plugin.PACTEditorTools
                 last += "}" + Environment.NewLine;
                 last += "}" + Environment.NewLine;
                 last += "}" + Environment.NewLine;
-
-                File.WriteAllText(@"c:\temp\pact\pact1.json", template + txt + last);
+                
+                File.WriteAllText(saveFileDialog.FileName, template + txt + last);
 
                 // SuccessMessage = "Json File Exported Successfully";
-                Process.Start(SaveToPath);
+                Process.Start(Path.GetDirectoryName(saveFileDialog.FileName));
             }
             catch (Exception ex)
             {

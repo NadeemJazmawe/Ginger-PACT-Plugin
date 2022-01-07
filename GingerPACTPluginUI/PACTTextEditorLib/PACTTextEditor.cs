@@ -485,7 +485,7 @@ namespace GingerPACTPlugIn.PACTTextEditorLib
         //    }
         //}
 
-        string ITextEditor.Name { get { return "My Text Editor"; } }
+        string ITextEditor.Name { get { return "Pact Editor"; } }
 
         
 
