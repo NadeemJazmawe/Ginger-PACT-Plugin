@@ -6,10 +6,9 @@ using System.Text;
 
 namespace Ginger_PACT_Plugin
 {
-        public class ProviderServicePactFile 
-        {
-            [JsonProperty(PropertyName = "interactions")]
-            public IEnumerable<ProviderServiceInteraction> Interactions { get; set; }
-        }
-
+    public class ProviderServicePactFile
+    {
+        [JsonProperty(PropertyName = "interactions")]
+        public IEnumerable<ProviderServiceInteraction> Interactions { get; set; }
+    }
 }

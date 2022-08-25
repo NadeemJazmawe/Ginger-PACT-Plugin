@@ -11,6 +11,7 @@ namespace GingerPACTPluginUITest
     public class UnitTest1
     {
         [TestMethod]
+        [STAThread]
         public void TestMethod1()
         {
             //Arrange
