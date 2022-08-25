@@ -4,7 +4,18 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\JavaTemplate.txt" />
+    <None Remove="Resources\NewInteractionTemplate.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\JavaTemplate.txt" />
+    <EmbeddedResource Include="Resources\NewInteractionTemplate.txt" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />

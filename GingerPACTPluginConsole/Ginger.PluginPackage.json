@@ -5,5 +5,5 @@
   "Description": "PACT",
   "Summary": "PACT plugin allows to simulate Web Services Server for API contract testing",
   "StartupDLL": "GingerPACTPluginConsole.dll",
-  "UIDLL": "GingerPACTPluginUI.exe"
+  "UIDLL": "GingerPACTPluginUI.dll"
 }

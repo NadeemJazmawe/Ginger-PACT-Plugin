@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Ginger_PACT_Plugin.PACTEditorTools
@@ -28,15 +29,19 @@ namespace Ginger_PACT_Plugin.PACTEditorTools
         {
 
             // mPACTTextEditorr.Compile();
-
-            
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Json files (*.json)|*.json";
-            if (saveFileDialog.ShowDialog()==DialogResult.Cancel)
+            Thread t = new Thread((ThreadStart)(() =>
             {
-                return;
-            }
-
+                
+                saveFileDialog.Filter = "Json files (*.json)|*.json";
+                if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+            t.Join();
 
             List<ProviderServiceInteraction> PSIList = mPACTTextEditorr.ParsePACT(mPACTTextEditorr.txt);
             //string ServiceConsumer = mPACTTextEditorr.ParseProperty(mPACTTextEditorr.TextHandler.Text, "Consumer");
@@ -76,7 +81,8 @@ namespace Ginger_PACT_Plugin.PACTEditorTools
                 File.WriteAllText(saveFileDialog.FileName, template + txt + last);
 
                 // SuccessMessage = "Json File Exported Successfully";
-                Process.Start(Path.GetDirectoryName(saveFileDialog.FileName));
+                //Process.Start(Path.GetDirectoryName(saveFileDialog.FileName));
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo() { FileName = Path.GetDirectoryName(saveFileDialog.FileName), UseShellExecute = true });
             }
             catch (Exception ex)
             {
