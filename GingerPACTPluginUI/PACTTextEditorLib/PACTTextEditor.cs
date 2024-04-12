@@ -20,12 +20,14 @@ using Amdocs.Ginger.Plugin.Core;
 using Ginger_PACT_Plugin;
 using Ginger_PACT_Plugin.PACTEditorTools;
 using GingerPACTPluginUI.PACTTextEditorLib;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PactNet.Mocks.MockHttpService.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Reflection.Metadata;
 using System.Windows;
 
 namespace GingerPACTPlugIn.PACTTextEditorLib
@@ -910,9 +912,34 @@ namespace GingerPACTPlugIn.PACTTextEditorLib
                 {
                     string st2 = st.Substring(0, st.LastIndexOf('}') + 1);
                     if (!RequestHeadersPassed)
-                        PSI.Request.Body += st2;
+                    {
+                        if(PSI.Request.Headers != null && PSI.Request.Headers.ContainsKey("Content-Type"))
+                        {
+                            if (PSI.Request.Headers["Content-Type"].ToString().Contains("application/json"))
+                            {
+                                PSI.Request.Body = JsonConvert.DeserializeObject(st);
+                            }
+                            else
+                            {
+                                PSI.Request.Body = st2;
+                            }
+                        }
+                    }
                     else
-                        PSI.Response.Body += st2;
+                    {
+                        if (PSI.Response.Headers != null && PSI.Response.Headers.ContainsKey("Content-Type"))
+                        {
+                            if (PSI.Response.Headers["Content-Type"].ToString().Contains("application/json"))
+                            {
+                                PSI.Response.Body = JsonConvert.DeserializeObject(st);
+                            }
+                            else
+                            {
+                                PSI.Response.Body = st2;
+                            }
+                        }
+                    }
+                        
 
                 }
             }
