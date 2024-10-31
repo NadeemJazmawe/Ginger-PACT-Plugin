@@ -1,9 +1,11 @@
 name: Dotnet Generic CI Action
 
 on:
-    workflow_dispatch: 
-    
+    workflow_dispatch:  
     workflow_call:
+    push:
+        branches:
+            - master
 
 jobs:
     CI:
