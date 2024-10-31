@@ -22,4 +22,4 @@ jobs:
                 uses: NadeemJazmawe/DotNet-Generic-CI-Action@V1.0
                 with:
                   # The version of .NET Core to use
-                  dotnet-version: 8.0.100
+                  dotnet-version: 8.0.403
